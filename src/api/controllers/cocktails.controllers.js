@@ -17,7 +17,7 @@ const getCocktail = async (request, response) => {
     try {
         
         const {id} = request.params;
-        const allCocktails = await Cocktail.findById(id);
+        const allCocktails = await Cocktail.findById(id).populate("ingredients");
         return response.status(200).json(allCocktails);
 
     } catch (error) {

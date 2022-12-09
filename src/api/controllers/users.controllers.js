@@ -40,7 +40,7 @@ const login = async (request, response, next) => {       //Función para el logi
 
             const token = generateSign(userInfo._id, userInfo.email); //Generamos un token pasando los parámetros ._id, email
             console.log(token)
-            return response.status(200).json(token)
+            return response.status(200).json({user: userInfo, token: token})
             
             
         } else {

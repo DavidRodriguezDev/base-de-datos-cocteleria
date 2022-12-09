@@ -8,7 +8,7 @@ const {isAuth} = require('../../middlewares/auth'); //Para securizar rutas.
 
 //--------------------------------------Routers
 
-router.get('/', [isAuth], getAllCocktails)
+router.get('/', getAllCocktails)
 
 router.get('/:id', getCocktail)
 
