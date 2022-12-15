@@ -30,8 +30,8 @@ const getIngredients = async (request, response) => {
 const postIngredients = async (request, response) => {
     try {
         
-        const {mainIngredient, secondIngredient, thirdIngredient, fourthIngredient, fifthIngredient, sixthIngredient} = request.body;
-        const newIngredients = new Ingredients({mainIngredient, secondIngredient, thirdIngredient, fourthIngredient, fifthIngredient, sixthIngredient});
+        const {mainIngredient, restIngredients, measures} = request.body;
+        const newIngredients = new Ingredients({mainIngredient, restIngredients, measures});
         const createdIngredients = await newIngredients.save();
         return response.status(200).json(createdIngredients);
 

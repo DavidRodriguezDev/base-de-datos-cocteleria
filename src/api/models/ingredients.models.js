@@ -4,13 +4,11 @@ const Schema = mongoose.Schema;
 
 const ingredientsSchema = new Schema(
     {
-        mainIngredient : {type : String, required : true},
-        secondIngredient : {type : String, required : true},
-        thirdIngredient : {type : String},
-        fourthIngredient : {type : String},
-        fifthIngredient : {type : String},
-        sixthIngredient : {type : String}
-    }, {
+        mainIngredient : {type: String, required : true},
+        restIngredients : [{type: String, required : true}],
+        measures : [{type: String, required : true}]
+    },
+    {
         timestamps : true
     }
 )
