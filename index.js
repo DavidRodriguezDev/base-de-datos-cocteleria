@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 })
 
 app.use(cors({
-    origin: ['http://localhost:3040'],
+    origin: ['http://localhost:3000'],
     credentials: 'false'
 }))
 
@@ -34,5 +34,13 @@ app.use(express.urlencoded({extended: false}));
 app.use('/cocktails', routerCocktails);
 app.use('/ingredients', routerIngredients);
 app.use('/users', userRouter);  //Esta no se securiza porque para acceder a loguearte no estás autenticado.
+
+app.use('*', (req, res) => res.status(404).json('La ruta seleccionada no existe.'));
+
+app.use((error, res) => {
+
+    return res.status( error.status || 500 ).json("Error: " + error.message || "Unexpected error");
+
+})
 
 app.listen(PORT, () => console.log(`listening on port : http://localhost:${PORT}`));
