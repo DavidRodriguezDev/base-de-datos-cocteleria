@@ -9,7 +9,8 @@ const cocktailSchema = new Schema(
         ice : {type : String, required : true},
         method : {type : String, required : true},
         decoration : {type : String, required : true},
-        ingredients : [{type: Schema.Types.ObjectId, ref: "ingredients"}] 
+        photo : {type : String, required : true},
+        ingredients : [{type: Schema.Types.ObjectId, ref: "ingredients"}]
     }, {
         timestamps : true
     }

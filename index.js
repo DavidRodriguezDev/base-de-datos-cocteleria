@@ -3,15 +3,25 @@ const {connect} = require('./src/utils/database'); //Conexión  con la BBDD
 const dotenv = require('dotenv');
 const cors = require('cors');
 
+const cloudinary = require("cloudinary").v2;
+
 //Routers  
 const routerCocktails = require('./src/api/routes/cocktail.routes');
 const routerIngredients = require('./src/api/routes/ingredientes.routes')
 const userRouter = require('./src/api/routes/users.routes');
 const { isAuth } = require('./src/middlewares/auth');
 
-const PORT = process.env.PORT || 9000;
+
 
 dotenv.config();
+const PORT = process.env.PORT || 9000;
+
+cloudinary.config({
+    cloud_name : process.env.CLOUD_NAME,
+    api_key : process.env.CLOUD_KEY,
+    api_secret : process.env.CLOUD_SECRET
+})
+
 const app = express();
 connect();
 

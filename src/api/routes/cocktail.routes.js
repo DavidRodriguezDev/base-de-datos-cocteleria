@@ -6,16 +6,18 @@ const  {getAllCocktails, getCocktail, postNewCocktail, putCocktail, deleteCockta
 
 const {isAuth} = require('../../middlewares/auth'); //Para securizar rutas.
 
+const upload = require("../../middlewares/upload.files"); //Cloudinary
+
 //--------------------------------------Routers
 
 router.get('/', getAllCocktails)
 
 router.get('/:id', getCocktail)
 
-router.post('/', [isAuth] ,postNewCocktail) //Securizadas las rutas que no quiero que cojan los usuarios sin loguearse.
+router.post('/', [isAuth], upload.single("photo") ,postNewCocktail) //Securizadas las rutas que no quiero que cojan los usuarios sin loguearse.
+                                                                    //También va a requerir upload
 
-
-router.put('/:id',  [isAuth] ,putCocktail) //Securizadas las rutas que no quiero que cojan los usuarios sin loguearse.
+router.put('/:id', upload.single("photo") , putCocktail) //Securizadas las rutas que no quiero que cojan los usuarios sin loguearse.
 
 router.delete('/:id',  [isAuth] ,deleteCocktail) //Securizadas las rutas que no quiero que cojan los usuarios sin loguearse.
 

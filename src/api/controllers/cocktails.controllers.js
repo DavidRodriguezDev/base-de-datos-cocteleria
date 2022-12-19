@@ -28,8 +28,13 @@ const getCocktail = async (request, response) => {
 const postNewCocktail = async (request, response) => {
     try {
         
-        const {name, glass, ice, method, decoration, ingredients} = request.body;
-        const newCocktail = new Cocktail({name, glass, ice, method, decoration, ingredients});
+        const {name, glass, ice, method, decoration, ingredients, photo} = request.body;
+        const newCocktail = new Cocktail({name, glass, ice, method, decoration, ingredients, photo});
+
+        if(request.file) {
+            newCocktail.photo = request.file.path;
+        }
+
         const createdCocktail = await newCocktail.save();
         return response.status(200).json(createdCocktail);
 
@@ -45,6 +50,10 @@ const putCocktail = async (request, response) => {
         const putCocktail = new Cocktail(request.body);
         putCocktail._id = id;
 
+        if(request.file) {
+        putCocktail.photo = request.file.path;
+        }
+                    
         const cocktailDb = await Cocktail.findByIdAndUpdate(id, putCocktail);
         if(!cocktailDb){
             return response.status(404).json({"message" : "Cocktail not found"})
