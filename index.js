@@ -1,5 +1,5 @@
 const express = require('express');
-const {connect} = require('./src/utils/database'); //Conexión  con la BBDD
+const {connect} = require('./src/utils/database'); //Conexión  con la BBDD.
 const dotenv = require('dotenv');
 const cors = require('cors');
 
