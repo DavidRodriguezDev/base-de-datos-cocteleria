@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 })
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://cocktail-database-psi.vercel.app/'],
+    origin: ['http://localhost:3000'],
     credentials: 'false'
 }))
 
